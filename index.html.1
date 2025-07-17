@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>🎁 Birthday Surprise</title>
+  <style>
+    body {
+      background-color: #ffe4e1;
+      text-align: center;
+      font-family: "Segoe UI", sans-serif;
+      padding: 50px;
+    }
+
+    #giftBox {
+      font-size: 100px;
+      cursor: pointer;
+      animation: bounce 1s infinite;
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-15px); }
+    }
+
+    #messages {
+      display: none;
+      margin-top: 40px;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .msg {
+      background: #fff;
+      padding: 15px;
+      border-radius: 10px;
+      margin: 15px 0;
+      font-size: 18px;
+      box-shadow: 2px 2px 10px rgba(0,0,0,0.1);
+      opacity: 0;
+      transform: translateY(20px);
+      animation: slideIn 0.6s forwards;
+    }
+
+    @keyframes slideIn {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
+</head>
+<body>
+  <h2 id="greeting">🎉 Happy Birthday! 🎉</h2>
+  <div id="giftBox" onclick="showMessages()">🎁</div>
+
+  <div id="messages"></div>
+
+  <script>
+    const urlParams = new URLSearchParams(window.location.search);
+    const name = urlParams.get('name') || "Friend";
+    document.getElementById("greeting").textContent = `🎉 Happy Birthday ${name}! 🎉`;
+
+    const wishes = [
+      "Happy Birthday to my officially licensed jogra partner! 😜",
+      "Tui chara amar kunu din complete lage na —",
+      "Jogra kori, abar ek second e mishi jai.",
+      "Ami chai tui amar loge always oula jogra kor, but valo o bashish! 😂",
+      "May your day be full of cake, gifts, and no fight with me (at least today)! 💝"
+    ];
+
+    function showMessages() {
+      document.getElementById("giftBox").style.display = "none";
+      const msgContainer = document.getElementById("messages");
+      msgContainer.style.display = "block";
+
+      wishes.forEach((msg, i) => {
+        const div = document.createElement("div");
+        div.className = "msg";
+        div.style.animationDelay = `${i * 1}s`;
+        div.textContent = msg;
+        msgContainer.appendChild(div);
+      });
+    }
+  </script>
+</body>
+</html>
